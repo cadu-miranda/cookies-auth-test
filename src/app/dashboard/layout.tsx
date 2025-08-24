@@ -8,9 +8,7 @@ export const metadata: Metadata = {
 
 export default function DashboardLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header (mobile) */}
@@ -24,13 +22,13 @@ export default function DashboardLayout({
       <div className="mx-auto grid w-full grid-cols-1 md:grid-cols-[14rem_1fr]">
         {/* Sidebar (desktop) */}
 
-        <div className="hidden md:block border-r border-border">
+        <div className="hidden md:block">
           <Sidebar />
         </div>
 
         {/* Conteúdo */}
 
-        <main className="p-4 md:p-6">{children}</main>
+        <main className="p-2">{children}</main>
       </div>
     </div>
   );
