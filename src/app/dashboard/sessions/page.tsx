@@ -60,7 +60,7 @@ export default async function SessionsPage(props: {
 
   return (
     <div className="flex flex-1 flex-col gap-6 p-3">
-      <div className="flex items-center gap-2 text-xl font-semibold">
+      <div className="flex items-center gap-3 text-xl font-semibold">
         <Shield />
 
         <h3>Sessões</h3>

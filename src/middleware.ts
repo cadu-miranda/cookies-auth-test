@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
   // Caso esteja na home e o usuário esteja autenticado, redireciona para o dashboard.
 
   if (path === '/' && isAuthenticated) {
-    url.pathname = '/dashboard/sessions';
+    url.pathname = '/dashboard/users';
 
     return NextResponse.redirect(url);
   }

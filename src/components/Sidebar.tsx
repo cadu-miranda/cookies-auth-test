@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { Shield } from 'lucide-react';
+import { Users, Shield } from 'lucide-react';
 import { QuickActions } from '@/components/QuickActions';
 
 const Sidebar = () => {
@@ -14,6 +14,7 @@ const Sidebar = () => {
   const [busy, setBusy] = useState(false);
 
   const links = [
+    { href: '/dashboard/users', label: 'Usuários', icon: Users },
     { href: '/dashboard/sessions', label: 'Sessões', icon: Shield },
   ];
 
@@ -45,7 +46,7 @@ const Sidebar = () => {
           </span>
         </div>
 
-        <nav className="space-y-1">
+        <nav className="space-y-2">
           {links.map(({ href, label, icon: Icon }) => {
             const isActive = pathname === href;
 

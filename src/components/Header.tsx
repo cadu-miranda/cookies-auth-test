@@ -11,7 +11,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { Menu, Shield } from 'lucide-react';
+import { Menu, Users, Shield } from 'lucide-react';
 import { QuickActions } from '@/components/QuickActions';
 
 const Header = () => {
@@ -22,6 +22,7 @@ const Header = () => {
   const [busy, setBusy] = useState(false);
 
   const links = [
+    { href: '/dashboard/users', label: 'Usuários', icon: Users },
     { href: '/dashboard/sessions', label: 'Sessões', icon: Shield },
   ];
 
@@ -62,7 +63,7 @@ const Header = () => {
           </SheetHeader>
 
           <div className="mt-6 flex h-[calc(100%-3rem)] flex-col">
-            <nav className="space-y-1 px-3">
+            <nav className="space-y-2 px-3">
               {links.map(({ href, label, icon: Icon }) => {
                 const isActive = pathname === href;
 
