@@ -44,7 +44,7 @@ const LoginPage = () => {
         throw new Error(data?.message || 'Falha no login');
       }
 
-      router.replace('/dashboard/sessions');
+      router.refresh();
     } catch (err) {
       setError((err as Error).message || 'Erro desconhecido.');
     } finally {
