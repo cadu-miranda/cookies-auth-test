@@ -1,6 +1,6 @@
 import { cookies, headers } from 'next/headers';
-import { LogoutButton } from '../../../components/LogoutButton';
-import { SessionsTable } from '../../../components/SessionsTable';
+import { LogoutButton } from '../../../components/auth/LogoutButton';
+import { SessionsTable } from '../../../components/dashboard/SessionsTable';
 
 type SearchParams = { [k: string]: string | string[] | undefined };
 
