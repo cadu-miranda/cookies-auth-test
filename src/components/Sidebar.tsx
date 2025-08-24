@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
-import { Shield, LogOut } from 'lucide-react';
+import { LogOut, Shield } from 'lucide-react';
+import { ThemeToggle } from './ThemeToggle';
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -37,7 +38,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="h-full md:h-screen w-full md:w-56 bg-background border-border md:border-r p-4">
+    <aside className="h-full md:h-screen w-full md:w-56 bg-background border-border p-4">
       <div className="flex h-full flex-col">
         {/* Header */}
 
@@ -70,9 +71,16 @@ const Sidebar = () => {
           })}
         </nav>
 
-        {/* Footer fixo (botão Sair) */}
+        {/* Footer fixo: Theme + Sair */}
 
-        <div className="mt-auto pt-4 border-t border-border">
+        <div className="mt-auto space-y-3 pt-4 border-t border-border">
+          {/* Theme (desktop) */}
+
+          <div className="flex items-center justify-between">
+            <span className="text-xs text-muted-foreground">Tema</span>
+            <ThemeToggle />
+          </div>
+
           <Button
             onClick={onLogout}
             disabled={busy}
