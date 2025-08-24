@@ -13,12 +13,12 @@ const LogoutButton = () => {
     setLoading(true);
 
     try {
-      const resp = await fetch('http://localhost:3000/api/auth/sign-out', {
-        method: 'POST',
-        credentials: 'include',
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/sign-out`,
+        { method: 'POST', credentials: 'include' },
+      );
 
-      if (!resp.ok) {
+      if (!response.ok) {
         throw new Error('Falha ao sair');
       }
 

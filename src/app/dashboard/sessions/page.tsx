@@ -13,14 +13,14 @@ async function getSessions({ page = '1', pageSize = '10' } = {}) {
 
   const base = `${proto}://${host}`;
 
-  const jar = await cookies();
+  const cookieStore = await cookies();
 
-  const cookieHeader = jar
+  const cookieHeader = cookieStore
     .getAll()
     .map((c) => `${c.name}=${encodeURIComponent(c.value)}`)
     .join('; ');
 
-  const resp = await fetch(
+  const response = await fetch(
     `${base}/api/auth/sessions?page=${page}&pageSize=${pageSize}`,
     {
       cache: 'no-store',
@@ -28,7 +28,7 @@ async function getSessions({ page = '1', pageSize = '10' } = {}) {
     },
   );
 
-  if (!resp.ok) {
+  if (!response.ok) {
     return {
       items: [],
       meta: {
@@ -42,7 +42,7 @@ async function getSessions({ page = '1', pageSize = '10' } = {}) {
     };
   }
 
-  return resp.json();
+  return response.json();
 }
 
 export default async function SessionsPage(props: {

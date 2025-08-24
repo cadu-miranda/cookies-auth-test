@@ -28,12 +28,15 @@ const LoginPage = () => {
     setError(null);
 
     try {
-      const response = await fetch('http://localhost:3000/api/auth/sign-in', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({ email, password, rememberMe }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/sign-in`,
+        {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ email, password, rememberMe }),
+        },
+      );
 
       if (!response.ok) {
         const data = await response.json().catch(() => ({}));
@@ -41,7 +44,7 @@ const LoginPage = () => {
         throw new Error(data?.message || 'Falha no login');
       }
 
-      router.replace('/app/sessions');
+      router.replace('/dashboard/sessions');
     } catch (err) {
       setError((err as Error).message || 'Erro desconhecido.');
     } finally {

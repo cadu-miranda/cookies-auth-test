@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Cookies Auth Test',
+  title: 'Demo | Autenticação com cookies',
 };
 
 export default function RootLayout({

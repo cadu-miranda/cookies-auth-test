@@ -5,14 +5,17 @@ export async function POST(req: Request) {
 
   const body = await req.json();
 
-  const resp = await fetch(`http://localhost:3333/api/auth/revoke-session`, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json', cookie },
-    credentials: 'include',
-    body: JSON.stringify(body),
-  });
+  const response = await fetch(
+    `http://localhost:3333/api/auth/revoke-session`,
+    {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', cookie },
+      credentials: 'include',
+      body: JSON.stringify(body),
+    },
+  );
 
-  const data = await resp.json().catch(() => ({}));
+  const data = await response.json().catch(() => ({}));
 
-  return NextResponse.json(data, { status: resp.status });
+  return NextResponse.json(data, { status: response.status });
 }

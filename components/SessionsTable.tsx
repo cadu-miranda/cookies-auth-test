@@ -43,8 +43,8 @@ const SessionsTable = ({ items, meta }: { items: Item[]; meta: Meta }) => {
     setBusy(sessionId);
 
     try {
-      const resp = await fetch(
-        'http://localhost:3000/api/auth/revoke-session',
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/revoke-session`,
         {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
@@ -53,7 +53,7 @@ const SessionsTable = ({ items, meta }: { items: Item[]; meta: Meta }) => {
         },
       );
 
-      if (!resp.ok) {
+      if (!response.ok) {
         throw new Error('Falha ao revogar');
       }
 
@@ -67,12 +67,12 @@ const SessionsTable = ({ items, meta }: { items: Item[]; meta: Meta }) => {
     setBusy('others');
 
     try {
-      const resp = await fetch('http://localhost:3000/api/auth/revoke-others', {
-        method: 'POST',
-        credentials: 'include',
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/revoke-others`,
+        { method: 'POST', credentials: 'include' },
+      );
 
-      if (!resp.ok) {
+      if (!response.ok) {
         throw new Error('Falha ao revogar outras');
       }
 
