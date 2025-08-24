@@ -53,13 +53,16 @@ const Header = () => {
           </Button>
         </SheetTrigger>
 
-        <SheetContent side="left" className="w-72">
+        <SheetContent
+          side="left"
+          className="w-72 border-r border-border bg-background focus-visible:outline-none data-[state=open]:outline-none"
+        >
           <SheetHeader>
             <SheetTitle>Next.js + Auth.js</SheetTitle>
           </SheetHeader>
 
           <div className="mt-6 flex h-[calc(100%-3rem)] flex-col">
-            <nav className="space-y-1">
+            <nav className="space-y-1 px-3">
               {links.map(({ href, label, icon: Icon }) => {
                 const isActive = pathname === href;
 
@@ -82,7 +85,7 @@ const Header = () => {
 
             {/* Footer do Sheet: ações unificadas */}
 
-            <div className="mt-auto pt-4 border-t border-border">
+            <div className="mt-auto sticky bottom-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 px-3 pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+16px)] border-t border-border">
               <QuickActions onLogout={onLogout} busy={busy} />
             </div>
           </div>
