@@ -58,7 +58,7 @@ const Header = () => {
           className="w-72 border-r border-border bg-background focus-visible:outline-none data-[state=open]:outline-none"
         >
           <SheetHeader>
-            <SheetTitle>Next.js + Auth.js</SheetTitle>
+            <SheetTitle>Placeholder</SheetTitle>
           </SheetHeader>
 
           <div className="mt-6 flex h-[calc(100%-3rem)] flex-col">

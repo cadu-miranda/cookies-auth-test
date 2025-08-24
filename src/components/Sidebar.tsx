@@ -41,7 +41,7 @@ const Sidebar = () => {
       <div className="flex h-full flex-col">
         <div className="mb-6">
           <span className="text-lg font-semibold text-foreground">
-            Next.js + Auth.js
+            Placeholder
           </span>
         </div>
 
