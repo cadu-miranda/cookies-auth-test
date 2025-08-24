@@ -91,12 +91,16 @@ const SessionsTable = ({ items, meta }: { items: Item[]; meta: Meta }) => {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-gray-50 p-4 rounded-t-lg shadow-sm">
-        <div className="text-sm text-gray-600">
-          Total: <span className="font-medium">{meta.total}</span> • Página{' '}
-          <span className="font-medium">{meta.page}</span> de{' '}
-          <span className="font-medium">{meta.pageCount}</span>
+    <div className="overflow-x-auto rounded-lg border border-border bg-background shadow-sm">
+      {/* Top bar */}
+
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-muted/60 text-muted-foreground p-4 border-b border-border rounded-t-lg">
+        <div className="text-sm">
+          Total:{' '}
+          <span className="font-medium text-foreground">{meta.total}</span> •
+          Página{' '}
+          <span className="font-medium text-foreground">{meta.page}</span> de{' '}
+          <span className="font-medium text-foreground">{meta.pageCount}</span>
         </div>
 
         <Button onClick={revokeOthers} disabled={busy !== null}>
@@ -104,69 +108,74 @@ const SessionsTable = ({ items, meta }: { items: Item[]; meta: Meta }) => {
         </Button>
       </div>
 
-      <div className="overflow-x-auto shadow rounded-b-lg border border-gray-200">
-        <Table className="min-w-full text-sm">
-          <TableHeader className="bg-gray-100">
-            <TableRow>
-              <TableHead className="p-3 text-left font-medium text-gray-700">
-                Atual
-              </TableHead>
+      {/* Tabela “flat” + separadores sutis */}
 
-              <TableHead className="p-3 text-left font-medium text-gray-700">
-                Último uso
-              </TableHead>
+      <Table className="min-w-full text-sm border-0 [&_th]:border-0 [&_td]:border-0">
+        <TableHeader>
+          <TableRow className="hover:bg-transparent border-b border-border">
+            <TableHead className="p-3 text-left font-medium">Atual</TableHead>
 
-              <TableHead className="p-3 text-left font-medium text-gray-700">
-                IP
-              </TableHead>
+            <TableHead className="p-3 text-left font-medium">
+              Último uso
+            </TableHead>
 
-              <TableHead className="p-3 text-left font-medium text-gray-700">
-                User-Agent
-              </TableHead>
+            <TableHead className="p-3 text-left font-medium">IP</TableHead>
 
-              <TableHead className="p-3 text-center font-medium text-gray-700">
-                Ações
-              </TableHead>
-            </TableRow>
-          </TableHeader>
+            <TableHead className="p-3 text-left font-medium">
+              User-Agent
+            </TableHead>
 
-          <TableBody className="bg-white divide-y divide-gray-200">
-            {items.map((s) => (
-              <TableRow key={s.id} className="hover:bg-gray-50 transition">
-                <TableCell className="p-3">{s.current ? '✅' : ''}</TableCell>
+            <TableHead className="p-3 text-center font-medium">Ações</TableHead>
+          </TableRow>
+        </TableHeader>
 
-                <TableCell className="p-3">
-                  {s.lastUsedAt ? new Date(s.lastUsedAt).toLocaleString() : '-'}
-                </TableCell>
+        <TableBody>
+          {items.map((s) => (
+            <TableRow
+              key={s.id}
+              className="border-b border-border last:border-0 hover:bg-muted/50 transition-colors"
+            >
+              <TableCell className="p-3 align-middle">
+                {s.current ? '✅' : ''}
+              </TableCell>
 
-                <TableCell className="p-3">{s.ip ?? '-'}</TableCell>
+              <TableCell className="p-3 align-middle">
+                {s.lastUsedAt ? new Date(s.lastUsedAt).toLocaleString() : '-'}
+              </TableCell>
 
-                <TableCell
-                  className="p-3 truncate max-w-[240px]"
-                  title={s.userAgent ?? ''}
-                >
+              <TableCell className="p-3 align-middle">{s.ip ?? '-'}</TableCell>
+
+              <TableCell
+                className="p-3 align-middle max-w-[320px]"
+                title={s.userAgent ?? ''}
+              >
+                <span className="line-clamp-1 break-words text-foreground/90">
                   {s.userAgent ?? '-'}
-                </TableCell>
+                </span>
+              </TableCell>
 
-                <TableCell className="p-3 text-center">
-                  <Button
-                    onClick={() => revoke(s.id)}
-                    disabled={s.current || busy !== null}
-                    variant="destructive"
-                  >
-                    Revogar
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
+              <TableCell className="p-3 text-center align-middle">
+                <Button
+                  onClick={() => revoke(s.id)}
+                  disabled={s.current || busy !== null}
+                  variant="destructive"
+                >
+                  Revogar
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
 
-      <div className="flex items-center justify-end gap-4">
+      {/* Footer (paginação) */}
+
+      <div className="flex items-center justify-end gap-2 p-3 border-t border-border rounded-b-lg">
         <Button
           onClick={() => setPage(meta.page - 1)}
           disabled={!meta.hasPrevPage || busy !== null}
+          variant="secondary"
+          aria-label="Página anterior"
         >
           Anterior
         </Button>
@@ -174,6 +183,7 @@ const SessionsTable = ({ items, meta }: { items: Item[]; meta: Meta }) => {
         <Button
           onClick={() => setPage(meta.page + 1)}
           disabled={!meta.hasNextPage || busy !== null}
+          aria-label="Próxima página"
         >
           Próxima
         </Button>
