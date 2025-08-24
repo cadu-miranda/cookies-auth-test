@@ -11,8 +11,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { Menu, Shield, LogOut } from 'lucide-react';
-import { ThemeToggle } from './ThemeToggle';
+import { Menu, Shield } from 'lucide-react';
+import { QuickActions } from '@/components/QuickActions';
 
 const Header = () => {
   const pathname = usePathname();
@@ -46,8 +46,6 @@ const Header = () => {
 
   return (
     <header className="flex h-14 items-center px-4">
-      {/* Apenas o botão que abre o Sheet */}
-
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon" aria-label="Abrir menu">
@@ -61,8 +59,6 @@ const Header = () => {
           </SheetHeader>
 
           <div className="mt-6 flex h-[calc(100%-3rem)] flex-col">
-            {/* Navegação */}
-
             <nav className="space-y-1">
               {links.map(({ href, label, icon: Icon }) => {
                 const isActive = pathname === href;
@@ -84,25 +80,10 @@ const Header = () => {
               })}
             </nav>
 
-            {/* Footer do Sheet: tema + sair */}
+            {/* Footer do Sheet: ações unificadas */}
 
-            <div className="mt-auto space-y-3 pt-4 border-t border-border">
-              <div className="flex items-center justify-between">
-                <span className="text-xs text-muted-foreground">Tema</span>
-
-                <ThemeToggle />
-              </div>
-
-              <Button
-                onClick={onLogout}
-                disabled={busy}
-                aria-busy={busy}
-                variant="ghost"
-                className="w-full justify-start text-destructive hover:text-destructive hover:bg-destructive/10"
-              >
-                <LogOut className="mr-2 h-4 w-4" />
-                {busy ? 'Saindo...' : 'Sair'}
-              </Button>
+            <div className="mt-auto pt-4 border-t border-border">
+              <QuickActions onLogout={onLogout} busy={busy} />
             </div>
           </div>
         </SheetContent>
