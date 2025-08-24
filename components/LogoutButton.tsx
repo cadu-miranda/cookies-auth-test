@@ -22,7 +22,7 @@ const LogoutButton = () => {
         throw new Error('Falha ao sair');
       }
 
-      router.replace('/login');
+      router.replace('/');
     } finally {
       setLoading(false);
     }

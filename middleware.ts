@@ -1,6 +1,6 @@
 import { NextResponse, NextRequest } from 'next/server';
 
-const PROTECTED_PREFIXES = ['/app'];
+const PROTECTED_PREFIXES = ['/dashboard'];
 
 export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
@@ -37,7 +37,8 @@ export async function middleware(req: NextRequest) {
   }
 
   if (wantsProtected && !hasAccess && !hasRefresh) {
-    url.pathname = '/login';
+    url.pathname = '/';
+
     return NextResponse.redirect(url);
   }
 

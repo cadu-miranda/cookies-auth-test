@@ -87,7 +87,7 @@ const SessionsTable = ({ items, meta }: { items: Item[]; meta: Meta }) => {
 
     params.set('page', String(page));
 
-    router.push(`/app/sessions?${params.toString()}`);
+    router.push(`/dashboard/sessions?${params.toString()}`);
   };
 
   return (
