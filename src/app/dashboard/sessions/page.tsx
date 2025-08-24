@@ -1,6 +1,6 @@
 import { cookies, headers } from 'next/headers';
-import { LogoutButton } from '../../../components/auth/LogoutButton';
 import { SessionsTable } from '../../../components/dashboard/SessionsTable';
+import { Shield } from 'lucide-react';
 
 type SearchParams = { [k: string]: string | string[] | undefined };
 
@@ -59,16 +59,14 @@ export default async function SessionsPage(props: {
   });
 
   return (
-    <div className="w-full p-4 sm:p-6 lg:p-8 space-y-6">
-      <h1 className="text-2xl font-semibold">Sessões ativas</h1>
+    <div className="flex flex-1 flex-col gap-6 p-3">
+      <div className="flex items-center gap-2 text-xl font-semibold">
+        <Shield />
 
-      <p>Veja todas as sessões ativas da sua conta.</p>
+        <h3>Sessões</h3>
+      </div>
 
       <SessionsTable items={items} meta={meta} />
-
-      <div className="w-full">
-        <LogoutButton />
-      </div>
     </div>
   );
 }

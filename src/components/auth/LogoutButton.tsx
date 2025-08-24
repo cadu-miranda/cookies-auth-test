@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { LogOut } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
@@ -30,6 +31,7 @@ const LogoutButton = () => {
 
   return (
     <Button onClick={onLogout} disabled={loading}>
+      <LogOut />
       Sair
     </Button>
   );
