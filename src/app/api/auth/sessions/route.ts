@@ -9,8 +9,9 @@ export async function GET(req: Request) {
   let cookieHeader = req.headers.get('cookie') ?? '';
 
   if (!cookieHeader) {
-    const jar = await cookies();
-    cookieHeader = jar
+    const cookieStore = await cookies();
+
+    cookieHeader = cookieStore
       .getAll()
       .map((c) => `${c.name}=${encodeURIComponent(c.value)}`)
       .join('; ');
