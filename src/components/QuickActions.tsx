@@ -119,7 +119,7 @@ const QuickActions = ({
 
         <DropdownMenuItem
           onClick={() => !busy && onLogout()}
-          className="flex items-center gap-2 rounded-md text-destructive focus:text-destructive"
+          className="flex items-center gap-2 rounded-md"
         >
           {busy ? (
             <Loader2 className="h-4 w-4 animate-spin" />
