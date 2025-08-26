@@ -265,9 +265,6 @@ const SessionsTable = ({ items, meta }: { items: Item[]; meta: Meta }) => {
                   {meta.total}
                 </span>
               </span>
-              <span className="inline-flex items-center rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-foreground/80">
-                {meta.total} no total
-              </span>
             </>
           ) : (
             <span>Nenhum resultado</span>
